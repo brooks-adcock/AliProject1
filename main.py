@@ -13,16 +13,16 @@ def main():
     course_list = ['csc121', 'csc122', 'csc221']
     max_size_list = [2, 2, 1]
     roster_list = [['1004', '1003'], ['1001'], ['1002']]
+    user_type = input('Enter 1 for student, 2 for admin, 0 to quit: ')
 
 def login(id_list):
-    user_type = input('Enter 1 for student, 2 for admin, 0 to quit: ')
-# student input
+    # student input
     if user_type == '1':
         id = int(input('Enter student ID: '))
         pin = int(input('Enter student PIN: '))
-        if id and pin not in id_list[:]:  # not recognizing numbers in list
-            print('Invalid ID or PIN.')
-            id = int(input('Enter student ID: '))
+        for each in id_list:
+            if id and pin not in each:
+                print('Invalid ID or PIN.')
         else:
             print('ID and PIN verified.')
     # add in student .py
@@ -30,8 +30,9 @@ def login(id_list):
     if user_type == '2':
         id = int(input('Enter admin ID: '))
         pin = int(input('Enter admin PIN: '))
-        if id and pin not in admin_list[:]:  # not recognizing numbers in list
-            print('Invalid ID or PIN.')
+        for each in admin_list:
+            if id and pin not in each:
+                print('Invalid ID or PIN.')
         else:
             print('ID and PIN verified.')
     # add in admin .py
