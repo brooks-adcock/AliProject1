@@ -13,41 +13,41 @@ def main():
     course_list = ['csc121', 'csc122', 'csc221']
     max_size_list = [2, 2, 1]
     roster_list = [['1004', '1003'], ['1001'], ['1002']]
+    user_type = input('Enter 1 for student, 2 for admin, 0 to quit: ')
+
+    """ 
+    you need to test for user_type here, not in login. 'user_type' defined in main, not in login. That means
+    login has no idea it exists unless it's passed in as a parameter
+    """
 
 def login(id_list):
 
-    user_type = input('Enter 1 for student, 2 for admin, 0 to quit: ')
-    """
-    You need to put the user type input in the main function, otherwise you'll never be able to pass login() the
-    correct user list. You'll notice below admin_list is in red. That means that this function doesn't know about
-    'admin_list'. 'admin_list' is defined inside main(), so no other function knows about it unless it's passed in.
-    """
+
     # student input
     if user_type == '1':
         id = int(input('Enter student ID: '))
         pin = int(input('Enter student PIN: '))
-
-        if id and pin not in id_list[:]:
-            """
-            This if statement wrong. The statement: 'id and pin' evaluates to either True or False. That means
-            you're asking 'if True in id_list'. Since True is not in id_list, it will always evaluate to false
-            What you want to do is check if the Touple (id, pin) is in id_list using if (id, pin) not in id_list
-            """
-            print('Invalid ID or PIN.')
-            id = int(input('Enter student ID: ')) #why is this here?
+        for each in id_list:
+            if id and pin not in each:
+                print('Invalid ID or PIN.')
         else:
             print('ID and PIN verified.')
     # add in student .py
-#admin input
+    #admin input
     if user_type == '2':
         id = int(input('Enter admin ID: '))
         pin = int(input('Enter admin PIN: '))
-        if id and pin not in admin_list[:]:  # not recognizing numbers in list
-            print('Invalid ID or PIN.')
+        for each in admin_list:
+            if id and pin not in each:
+                print('Invalid ID or PIN.')
         else:
             print('ID and PIN verified.')
     # add in admin .py
 
-# Exit
+    # Exit
     if user_type == '0':
         print('Goodbye.')
+
+    """
+    Don't forget to return the user id and a boolean for success or failure of login
+    """
