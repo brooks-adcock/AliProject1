@@ -15,14 +15,26 @@ def main():
     roster_list = [['1004', '1003'], ['1001'], ['1002']]
 
 def login(id_list):
+
     user_type = input('Enter 1 for student, 2 for admin, 0 to quit: ')
-# student input
+    """
+    You need to put the user type input in the main function, otherwise you'll never be able to pass login() the
+    correct user list. You'll notice below admin_list is in red. That means that this function doesn't know about
+    'admin_list'. 'admin_list' is defined inside main(), so no other function knows about it unless it's passed in.
+    """
+    # student input
     if user_type == '1':
         id = int(input('Enter student ID: '))
         pin = int(input('Enter student PIN: '))
-        if id and pin not in id_list[:]:  # not recognizing numbers in list
+
+        if id and pin not in id_list[:]:
+            """
+            This if statement wrong. The statement: 'id and pin' evaluates to either True or False. That means
+            you're asking 'if True in id_list'. Since True is not in id_list, it will always evaluate to false
+            What you want to do is check if the Touple (id, pin) is in id_list using if (id, pin) not in id_list
+            """
             print('Invalid ID or PIN.')
-            id = int(input('Enter student ID: '))
+            id = int(input('Enter student ID: ')) #why is this here?
         else:
             print('ID and PIN verified.')
     # add in student .py
